@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jay Tillu</title>
+  </head>
+  <body></body>
+
+  <script>
+    const div = document.createElement("div");
+    div.className = "title";
+    div.id = Math.round(Math.random() * 10 + 1);
+    div.setAttribute("title", "generated title");
+    div.style.backgroundColor = "orange";
+    div.style.padding = "12px";
+    div.innerText = "Hello Jay";
+    // const addText = document.createTextNode("Hello JD")
+    // div.appendChild(addText)
+    document.body.appendChild(div);
+    console.log(div);
+  </script>
+</html>

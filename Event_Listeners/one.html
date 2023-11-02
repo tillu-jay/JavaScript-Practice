@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Listeners</title>
+  </head>
+  <body style="background-color: #414141; color: aliceblue">
+    <h2>Amazing image</h2>
+    <div>
+      <ul id="images">
+        <li>
+          <img
+            width="200px"
+            id="photoshop"
+            src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt="photoshop"
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            id="japan"
+            src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            id="river"
+            src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            id="owl"
+            src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            id="prayer"
+            src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+            alt=""
+          />
+        </li>
+        <li>
+          <a style="color: aliceblue" href="https://google.com" id="google"
+            >Google</a
+          >
+        </li>
+      </ul>
+    </div>
+  </body>
+
+  <script>
+    // ====> Old Way - Not Recommended Today
+    // document.querySelector("#owl").onclick = () => {
+    //   alert("Owl Clicked");
+    // };
+
+    // attachEvent()
+    // jQuery
+
+    //===> Study Below Events
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget
+    // clientX, clientY, screenX, screenY
+    // altKey, ctrlKey, shiftKey, keyCode
+
+    //====> Event Propogation - This is how your script tracks from inside to outside elements
+    // 1. Event Bubbling (default) - Executes from inside to outside
+    // 2. Event Capturing - Executes from outside to inside
+    // e.stopPropogation - Prevents your element to go outside
+
+    document.querySelector("#images").addEventListener(
+      "click",
+      (e) => {
+        console.log("Image Clicked");
+        // e.stopPropagation();
+      },
+      false
+    );
+
+    document.querySelector("#owl").addEventListener(
+      "click",
+      (e) => {
+        console.log("Owl Clicked");
+        // alert("Own Again Clicked");
+        // e.stopPropagation();
+      },
+      false
+    );
+
+    document.querySelector("#google").addEventListener("click", (e) => {
+      // Will prevent the default behaviour Anchor tag of opening the link in browser
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("Google Clicked");
+    });
+
+    document.querySelector("#images").addEventListener("click", (e) => {
+      //===> This is called event spill over
+      //===> To access the parent -> e.target.parentNode
+      //===> To access the Tag -> e.target.tagName
+
+      if (e.target.tagName === "IMG") {
+        let removeIt = e.target.parentNode;
+        console.log(e.target.tagName);
+        removeIt.remove();
+      }
+    });
+  </script>
+</html>

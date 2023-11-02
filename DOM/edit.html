@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="language">
+    </ul>
+  </body>
+  <script>
+    // Not Optimized Way
+    // Here entire node-tree is traversing. So its not optimized
+    function addLanguge(langName) {
+      const li = document.createElement("li");
+      li.innerHTML = langName;
+      document.querySelector(".language").appendChild(li);
+    }
+    addLanguge("Python");
+
+    // Optimized Way
+    // Always try to use AppendChild
+    function addOptimizedLanguage(langName) {
+      const li = document.createElement("li");
+      li.appendChild(document.createTextNode(langName))
+      document.querySelector(".language").appendChild(li)
+    }
+
+    addOptimizedLanguage('Java')
+    addOptimizedLanguage('Java')
+
+    // Edit Element
+    const secondLang = document.querySelector('li:nth-child(2)')
+    // console.log(secondLang);
+    // secondLang.innerHTML = "Hello Jay"
+    const newLi = document.createElement('li')
+    newLi.textContent = "Mojo"
+    secondLang.replaceWith(newLi)
+
+    // Edit Element 02
+    const firstLang = document.querySelector('li:first-child')
+    firstLang.outerHTML = "<li>C++</li>"
+
+    // Remove Element
+    const lastElement = document.querySelector('li:last-child')
+    lastElement.remove()
+  </script>
+</html>
